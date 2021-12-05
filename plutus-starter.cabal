@@ -24,7 +24,7 @@ maintainer:         Your email
 flag defer-plugin-errors
     description:
         Defer errors from the plugin, useful for things like Haddock that can't handle it.
-    default: False
+    default: True
     manual: True
 
 common lang
@@ -41,7 +41,7 @@ common lang
 library
     import: lang
     exposed-modules:
-      MyModule
+      Vesting
       Plutus.Contracts.Game
     build-depends:
       base >= 4.9 && < 5,
@@ -54,7 +54,29 @@ library
       plutus-tx-plugin,
       plutus-tx,
       plutus-ledger,
+      text
     hs-source-dirs: src examples/src
+
+test-suite vesting-test
+  import: lang
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  hs-source-dirs: test
+  -- other-modules:
+  --   Spec.Game
+  build-depends:
+    plutus-tx -any,
+    plutus-tx-plugin,
+    plutus-contract -any,
+    plutus-ledger -any,
+    plutus-starter -any
+  build-depends:
+    base >=4.9 && <5,
+    tasty -any,
+    tasty-hunit -any,
+    tasty-hedgehog >=0.2.0.0,
+    freer-extras,
+    data-default
 
 test-suite plutus-example-projects-test
   import: lang
@@ -73,7 +95,9 @@ test-suite plutus-example-projects-test
     base >=4.9 && <5,
     tasty -any,
     tasty-hunit -any,
-    tasty-hedgehog >=0.2.0.0
+    tasty-hedgehog >=0.2.0.0,
+    freer-extras,
+    data-default
 
 executable plutus-starter-pab
   import: lang
