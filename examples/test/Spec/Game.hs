@@ -13,12 +13,31 @@ import           Ledger                (ValidationError(ScriptFailure))
 import qualified Ledger.Ada            as Ada
 import           Plutus.Contract       (Contract, ContractError(WalletError))
 import           Wallet.API            (WalletAPIError(ValidationError))
-import           Plutus.Contract.Test
-import           Plutus.Contracts.Game
+import Plutus.Contract.Test
+    ( reasonable,
+      goldenPir,
+      assertContractError,
+      walletFundsChange,
+      anyTx,
+      (.&&.),
+      endpointAvailable,
+      checkPredicate,
+      w2,
+      w1 )
+import Plutus.Contracts.Game
+    ( gameValidator,
+      validateGuess,
+      guess,
+      guessTrace,
+      lockTrace,
+      lock,
+      game,
+      LockParams(LockParams),
+      GameSchema )
 import           Plutus.Trace.Emulator (ContractInstanceTag)
 import qualified Plutus.Trace.Emulator as Trace
 import qualified PlutusTx
-import           Test.Tasty
+import Test.Tasty ( testGroup, TestTree )
 import qualified Test.Tasty.HUnit      as HUnit
 import Prelude
 

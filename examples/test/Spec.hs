@@ -1,5 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
-module Spec(main) where
+module Main(main) where
 
 import qualified Spec.Game
 import           Test.Tasty

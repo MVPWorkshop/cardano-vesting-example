@@ -43,6 +43,7 @@ library
     exposed-modules:
       Vesting
       Plutus.Contracts.Game
+      VestingTrace
     build-depends:
       base >= 4.9 && < 5,
       aeson,
@@ -54,7 +55,8 @@ library
       plutus-tx-plugin,
       plutus-tx,
       plutus-ledger,
-      text
+      text,
+      data-default
     hs-source-dirs: src examples/src
 
 test-suite vesting-test
@@ -62,8 +64,8 @@ test-suite vesting-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   hs-source-dirs: test
-  -- other-modules:
-  --   Spec.Game
+  other-modules:
+    Spec.Vesting
   build-depends:
     plutus-tx -any,
     plutus-tx-plugin,
@@ -76,7 +78,6 @@ test-suite vesting-test
     tasty-hunit -any,
     tasty-hedgehog >=0.2.0.0,
     freer-extras,
-    data-default
 
 test-suite plutus-example-projects-test
   import: lang
@@ -97,7 +98,6 @@ test-suite plutus-example-projects-test
     tasty-hunit -any,
     tasty-hedgehog >=0.2.0.0,
     freer-extras,
-    data-default
 
 executable plutus-starter-pab
   import: lang

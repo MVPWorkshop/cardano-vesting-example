@@ -104,7 +104,7 @@ grab = endpoint @"grab" $ \_ -> do
     now   <- currentTime
     pkh   <- Plutus.Contract.ownPubKeyHash
     utxos <- utxosAt scrAddress
-    (oref, o, datum) <- findTheDatum utxos pkh now
+    (oref, _, datum) <- findTheDatum utxos pkh now
     logInfo @String $ printf "datum %s" (show datum) 
     logInfo @String $ printf "oref %s"  (show oref) 
     let lookups = Constraints.unspentOutputs utxos  <>
