@@ -45,7 +45,7 @@ tests = testGroup "vesting"
       checkPredicate "Grab before give should not work" 
       (walletFundsChange w2 (Ada.lovelaceValueOf 0)
           .&&. walletFundsChange w1 (Ada.adaValueOf 0)
-          .&&. assertContractError theContract t1 appropriateError "error should be: WalletError (ValidationError (ScriptFailure _)) ")
+          .&&. assertContractError theContract t1 appropriateError "OtherError 'Empty utxo map or no VestingDatum found!'")
       grabWithoutGive
     ]
 
